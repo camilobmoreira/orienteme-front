@@ -6,6 +6,12 @@ export function initialState() {
       email: '',
       userName: '',
       created_at: ''
+    },
+    toast: {
+      show: false,
+      color: '',
+      time: 0,
+      message: ''
     }
   }
 }

@@ -4,5 +4,11 @@ export default {
   },
   resetUser({ commit }) {
     commit('RESET_USER')
+  },
+  toast({ commit }, payload) {
+    commit('SET_TOAST', payload)
+  },
+  resetToast({ commit }) {
+    commit('RESET_TOAST')
   }
 }

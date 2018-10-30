@@ -14,11 +14,16 @@ const router = new Router({
   routes: [
     {
       path: '/',
+      name: 'Login',
+      component: loadView('Login')
+    },
+    {
+      path: '/home',
       name: 'Home',
-      component: loadView('Home')
-      //meta: {
-      // requiresAuth: true
-      //}
+      component: loadView('Home'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '*',
@@ -29,24 +34,15 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   const currentUser = store.getters.currentUser
+  const toast = store._actions.toast[0]
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
   if (requiresAuth && !currentUser.userName) {
-    Vue.$toast.open({
-      duration: 2000,
-      message: 'Efetue login para acessar essa área.',
-      position: 'is-top-right',
-      type: 'is-warning'
-    })
-    next('login')
-  } else if (to.name === 'Login' && currentUser.userName) {
-    Vue.$toast.open({
-      duration: 2000,
-      message: 'Você já está logado..',
-      position: 'is-top-right',
-      type: 'is-info'
-    })
+    toast({ message: 'Efetue login para acessar essa área.', color: 'error' })
     next('/')
+  } else if (to.name === '/' && currentUser.userName) {
+    toast({ message: 'Você já está logado.' })
+    next('/home')
   } else next()
 })
 
