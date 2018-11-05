@@ -9,6 +9,13 @@
       <v-btn
         flat
         v-if="currentUser._id"
+        to="/cadastro-professor"
+      >
+        <span class="mr-2">Cadastrar Professor</span>
+      </v-btn>
+      <v-btn
+        flat
+        v-if="currentUser._id"
         to="/cadastro-aluno"
       >
         <span class="mr-2">Cadastrar Aluno</span>

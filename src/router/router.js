@@ -34,6 +34,14 @@ const router = new Router({
       }
     },
     {
+      path: '/cadastro-professor',
+      name: 'CadastroProfessor',
+      component: loadView('CadastroProfessor'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '*',
       redirect: '/'
     }
