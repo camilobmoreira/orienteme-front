@@ -26,6 +26,14 @@ const router = new Router({
       }
     },
     {
+      path: '/cadastro-aluno',
+      name: 'CadastroAluno',
+      component: loadView('CadastroAluno'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '*',
       redirect: '/'
     }

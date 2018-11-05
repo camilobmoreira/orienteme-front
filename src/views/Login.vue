@@ -75,6 +75,8 @@ export default {
           let response = await this.axios.post('/api/authenticate', this.login)
           this.setCurrentUser(response.data.user)
           this.axios.defaults.headers['x-access-token'] = response.data.token
+
+          this.$router.push('/home')
         } catch (error) {
           this.toast({
             color: 'error',
@@ -84,7 +86,6 @@ export default {
           })
         } finally {
           this.loadSignIn = false
-          this.$router.push('/home')
         }
       }
     },
